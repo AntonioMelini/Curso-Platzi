@@ -21,7 +21,7 @@ const db= {
         db[tabla].push(data)
         console.log(db[tabla]);
         return data
-    }
+    } 
     async function remove(tabla,id){
         console.log("entro a remove store",id);
         db[tabla]= db[tabla].filter(users=>users.id!==id)
