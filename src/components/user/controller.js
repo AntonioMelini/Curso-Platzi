@@ -5,7 +5,20 @@ const TABLA='user';
 function list(){
     return store.list(TABLA);
 }
-
+function getOne(id){
+    return store.get(TABLA,id);
+}
+function upsert(id,nombre,edad){
+    let data={id,nombre,edad}
+    return store.upsert(TABLA,data);
+}
+function remove(id){
+    console.log("entro a remove controler",id);
+    return store.remove(TABLA,id);
+}
 module.exports={
-    list
+    list,
+    getOne,
+    upsert,
+    remove
 }
