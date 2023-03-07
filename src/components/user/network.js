@@ -17,9 +17,11 @@ router.get('/',async(req, res)=>{
 
 router.get('/create',async(req, res)=>{
     try {
-        console.log("entro a /aca");
-        const {id,nombre,edad}=req.query
+        console.log("entro a /create");
+        const {id,nombre,edad}=req.body
+      
         if(id && nombre && edad){
+       
         let data={id,nombre,edad}
         await controller.upsert(data)
         let x= await controller.list()

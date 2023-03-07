@@ -8,8 +8,7 @@ function list(){
 function getOne(id){
     return store.get(TABLA,id);
 }
-function upsert(id,nombre,edad){
-    let data={id,nombre,edad}
+function upsert(data){
     return store.upsert(TABLA,data);
 }
 function remove(id){
