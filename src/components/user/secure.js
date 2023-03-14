@@ -7,8 +7,8 @@ module.exports = function checkAuth  (action){
             case 'update':
                 // const owner = req.body.id;
                 // auth.check.own(req, owner);
-                auth.antonio(req,req.body.id)//verifica si hay errores de verificacion
-                next();// si no hay error next
+                let a=auth.antonio(req,res,req.body.id)//verifica si hay errores de verificacion
+                if(!a)next();// si no hay error next
                 break;
             default:
                 next();

@@ -61,7 +61,7 @@ router.get('/get/:id',async(req, res)=>{
 })
 router.put('/',secure('update'),async(req,res)=>{
     try {
-       // console.log("entro a /create");
+       console.log("entro a /update");
         const body=req.body
       
         if(body.id  ){
@@ -71,6 +71,7 @@ router.put('/',secure('update'),async(req,res)=>{
         response.success(req,res,x,200);
         }else response.error(req,res,'send valid params',400)
     } catch (error) {
+        console.log("aparecio un error");
         response.error(req,res,error.message,500)
     }
 })
