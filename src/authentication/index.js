@@ -1,5 +1,6 @@
 const jwt=require('jsonwebtoken');
 const config = require('../../config');
+const error= require('../utils/error')
 
 
 
@@ -18,15 +19,15 @@ const antonio=(req,owner)=>{
     
         console.log("entro a la funcion antonio");
         const authorization= req.headers.authorization || '';
-        if(!authorization) throw new Error('no hay token');
+        if(!authorization) error("No hay token", 401);
     
-        if(authorization.indexOf('Bearer ') === -1) throw new Error('Formato invalido')
+        if(authorization.indexOf('Bearer ') === -1) error('formato invalido del token', 401)
 
         let token = authorization.split(' ')[1]; 
         let tokenListo= jwt.verify(token, config.jwt.secret)
         console.log(tokenListo.id,owner);
         if(tokenListo.id !== owner){
-            throw new Error('no puedes modificar otro usuario')
+           error('no puedes modificar otro usuario',403)
         }
    
     

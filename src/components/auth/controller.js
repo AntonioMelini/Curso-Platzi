@@ -1,6 +1,7 @@
 const jwtAuth = require('../../authentication')
 const bcrypt = require('bcrypt')
 const TABLA='auth'
+const error=require('../../utils/error')
 
 module.exports= function (injectedStore) {
     let store = injectedStore
@@ -12,11 +13,17 @@ module.exports= function (injectedStore) {
     const login=async (username,password)=>{
        // console.log('entro a controler login');
         const data= await store.query(TABLA,username)
-
+        if(!data){
+            let e= error('Informacion invalida',400)
+          
+            return e;
+        }
         let passwordAuth= await bcrypt.compare(password,data.password)
 
         if(passwordAuth) return jwtAuth.tokenSign(data)
-        throw new Error('Informacion invalida')
+          let e= error('Informacion invalida',400)
+
+          return e;
         
         
     }
